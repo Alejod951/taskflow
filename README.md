@@ -137,6 +137,11 @@ Google OAuth is implemented to allow users to log in using their Google accounts
     onError={() => console.log("Login Failed")}
   />
 </GoogleOAuthProvider>
+```
+
+---
+
+---
 
 
 ##  **Next Steps**
