@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import GoogleLoginButton from "./components/GoogleLoginButton";
 
 function App() {
   const [message, setMessage] = useState("");
@@ -11,8 +12,9 @@ function App() {
   }, []);
 
   return (
-    <div className="flex">
-      <h1 className="text-center justify-center items-center text-4xl">{message || "Cargando..."}</h1>
+    <div >
+      <h1>Bienvenido a TaskFlow</h1>
+      <GoogleLoginButton />
     </div>
   );
 }
