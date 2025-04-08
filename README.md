@@ -61,6 +61,33 @@ npm run dev
 ---
 
 ## 🔐 **Authentication with JWT**
+---
+
+## 🔐 **Google OAuth Integration**
+
+Google OAuth is implemented to allow users to log in using their Google accounts.
+
+### **Frontend Setup**
+- Using `@react-oauth/google` to render the Google login button.
+- Once the user logs in, the token is sent to the backend to generate a JWT.
+
+### **Backend Flow**
+- Receives a Google credential token.
+- Verifies the token using Google's `oauth2-client`.
+- If valid, creates or finds the user in the database.
+- Returns a JWT to the client.
+
+### **Frontend Usage Example**
+```tsx
+<GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
+  <GoogleLogin
+    onSuccess={credentialResponse => {
+      // Send token to backend
+    }}
+    onError={() => console.log("Login Failed")}
+  />
+</GoogleOAuthProvider>
+
 
 ### **Endpoints**
 
