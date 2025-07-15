@@ -1,11 +1,15 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const authMiddleware = (req, res, next) => {
-  const token = req.header("Authorization");
-  if (!token) return res.status(401).json({ message: "Acceso denegado" });
+  const authHeader = req.header("Authorization");
+  if (!authHeader) return res.status(401).json({ message: "Acceso denegado" });
+
+  const token = authHeader.split(" ")[1]; // Extrae solo el token (sin "Bearer")
+  if (!token) return res.status(401).json({ message: "Token inválido" });
 
   try {
-    const verified = jwt.verify(token, "secreto");
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
     req.user = verified;
     next();
   } catch (error) {
