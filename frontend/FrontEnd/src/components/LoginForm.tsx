@@ -23,6 +23,7 @@ function LoginForm() {
       );
 
       localStorage.setItem('token', res.data.token);
+      console.log(localStorage);
       alert('¡Login exitoso!');
       window.location.reload(); // recargar para que la app use el token
     } catch (error: any) {
