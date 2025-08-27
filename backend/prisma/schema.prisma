@@ -28,6 +28,7 @@ model Board {
 model Task {
   id        String   @id @default(uuid())
   title     String
+  description String?
   completed Boolean  @default(false)
   boardId   String
   board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)

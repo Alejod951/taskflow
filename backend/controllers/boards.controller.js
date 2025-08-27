@@ -15,13 +15,20 @@ const createBoard = async (req, res) => {
 
 const getBoards = async (req, res) => {
   const userId = req.user.userId;
+
   try {
-    const boards = await prisma.board.findMany({ where: { userId }, include: { tasks: true } });
+    const boards = await prisma.board.findMany({
+      where: { userId },
+      include: { tasks: true },
+      orderBy: { createdAt: "asc" }, // ✅ siempre en el mismo orden
+    });
+
     res.json(boards);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener los tableros" });
+    res.status(500).json({ message: "Error al obtener tableros", error });
   }
 };
+
 
 const updateBoard = async (req, res) => {
   const { id } = req.params;
