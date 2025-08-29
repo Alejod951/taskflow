@@ -1,6 +1,13 @@
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { useNavigate  } from "react-router-dom";
+import { useAuth } from "../services/authContext";
+
+  
 
 const GoogleLoginButton = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const handleSuccess = async (credentialResponse: any) => {
     const res = await fetch("http://localhost:5100/api/auth/google/callback", {
       method: "POST",
@@ -10,8 +17,10 @@ const GoogleLoginButton = () => {
 
     const data = await res.json();
     
-    localStorage.setItem("token", data.token);
-    window.location.reload();
+    
+    login(data.token);
+    alert("¡Login exitoso!");
+    navigate("/boards"); 
   };
 
   return (

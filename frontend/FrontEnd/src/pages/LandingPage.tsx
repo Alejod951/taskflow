@@ -5,8 +5,8 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
       {/* Hero */}
-      <section className="text-center py-20 px-6">
-        <h1 className="text-5xl font-bold text-indigo-600 mb-4">
+      <section className="text-center py-20 px-6" >
+        <h1 className="text-5xl font-bold text-indigo-600 mb-4 mt-20">
           Bienvenido a TaskFlow
         </h1>
         <p className="text-lg text-gray-600 mb-6">
@@ -53,17 +53,17 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Final */}
-      <section className="text-center py-20 bg-indigo-600 text-white">
-        <h2 className="text-3xl font-bold mb-4">
-          Empieza gratis y organiza tu vida hoy
-        </h2>
-        <Link
-          to="/register"
-          className="bg-white text-indigo-600 px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition"
-        >
-          Registrarme
-        </Link>
-      </section>
+      <section className="lg:fixed lg:bottom-0 lg:left-0 w-full text-center py-8 bg-indigo-600 text-white">
+  <h2 className="text-2xl lg:text-3xl font-bold mb-4">
+    Empieza gratis y organiza tu vida hoy
+  </h2>
+  <Link
+    to="/register"
+    className="bg-white text-indigo-600 px-6 py-3 rounded-lg shadow-md hover:bg-gray-100 transition"
+  >
+    Registrarme
+  </Link>
+</section>
     </div>
   );
 }

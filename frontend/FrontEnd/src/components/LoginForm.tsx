@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 import GoogleLoginButton from "./GoogleLoginButton";
+import { useAuth } from "../services/authContext";
 
 type LoginResponse = {
   token: string;
@@ -11,6 +12,9 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -24,9 +28,10 @@ function LoginForm() {
         { email, password }
       );
 
-      localStorage.setItem("token", res.data.token);
+      
       alert("¡Login exitoso!");
-      window.location.reload(); // recargar para que la app use el token
+      login(res.data.token);
+      navigate("/boards"); // recargar para que la app use el token
     } catch (error: any) {
       console.error("Error de login:", error);
       setErrorMsg("Credenciales inválidas o error del servidor.");

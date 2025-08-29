@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+import { useAuth } from "../services/authContext";
+
 
 export default function Navbar() {
+  const { isAuthenticated, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  }, []);
+  
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    window.location.reload();
-  };
+  
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-md px-6 py-3 flex justify-between items-center z-50">
@@ -33,7 +29,7 @@ export default function Navbar() {
         </li>
         
 
-        {!isLoggedIn ? (
+        {!isAuthenticated ? (
           <li>
             <Link
               to="/login"
@@ -46,7 +42,7 @@ export default function Navbar() {
           <>
             
             <li
-              onClick={handleLogout}
+              onClick={logout}
               className="hover:scale-105 transition-transform text-red-600 cursor-pointer"
             >
               Logout
@@ -73,7 +69,7 @@ export default function Navbar() {
           </Link>
           
 
-          {!isLoggedIn ? (
+          {!isAuthenticated ? (
             <Link
               to="/login"
               className="text-indigo-600 font-semibold"
@@ -85,7 +81,7 @@ export default function Navbar() {
             <>
               
               <span
-                onClick={handleLogout}
+                onClick={logout}
                 className="cursor-pointer text-red-600"
               >
                 Logout
