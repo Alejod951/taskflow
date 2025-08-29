@@ -9,8 +9,9 @@ const GoogleLoginButton = () => {
     });
 
     const data = await res.json();
-    console.log("Token recibido:", data.token);
+    
     localStorage.setItem("token", data.token);
+    window.location.reload();
   };
 
   return (
